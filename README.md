@@ -44,18 +44,20 @@ The output will be displayed like the following.
 To create a google Account if you don't have any, open a browser window and click on **Sign In** button on google search page. Click **Create account** on the Sign In page.
 
 Enter the Details as shown in the below image.
-// 
+![Create_Google_Account](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/1create_google_account.JPG)
 
 CLick **Next** and enter the other personal details on the form and Agree the Terms and Conditions.
+
 Finaly create the Google Account.
 
-Once the Google Account is successfully created, open Manage your Google Account page.
+## Managing Google Account
+Once the Google Account is successfully created, open **Manage your Google Account** page.
 
-Click on Security Tab on the left and verify whether the **2 Step Verification** is disabled.
-//
+Click **Security Tab** on the left and verify whether **2-Step Verification** is disabled.
+![Two_Step_Verification](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/2disable_2step_verification.JPG)
 
-Then Navigate below to find **Less Secure apps** option and enable it.
-//
+Then Navigate below to find **Less Secure app access** option and enable it.
+![Less_secure_apps](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/3enable_less_secure_apps.JPG)
 
 
 
