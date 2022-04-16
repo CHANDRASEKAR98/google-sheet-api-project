@@ -281,7 +281,7 @@ Open [Google Console](https://console.cloud.google.com/) with your account creat
 
 ![final_output](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/26demo_output.JPG)
 
-**Note:** The User authoization on browser will be done initally once.
+**Note:** The User authoization on browser will be done initially once.
 
 12. Additional Logic
 When you try to execute the program when the Network is not stable / if there is no network connection, you will get `UnknownHostException`. Hence handle it using try-catch block to let the users know what exactly the problem is.
