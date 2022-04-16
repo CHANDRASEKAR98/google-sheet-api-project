@@ -169,3 +169,12 @@ Open [Google Console](https://console.cloud.google.com/) with your account creat
   
   ![rename_credentials](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/22rename_json_optionally.JPG)
   
+## Creating a Google Sheet
+  1. Create a Google Sheet in the same Google Account.
+
+  2. Load/ Write some data into the Sheet.
+
+  3. Copy a part of the Google Sheet's URL like in the below image and store it somewhere safe which we will use it in our Java project.
+
+  ![sheet_url](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/23create_sheet_copy_url_part.jpg)
+  
