@@ -132,7 +132,40 @@ Open [Google Console](https://console.cloud.google.com/) with your account creat
 
   ![final_oauth_consent](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/17oauth_consent_created.JPG)
 
-  
-  
+- ### Creating Credentials
 
+  Once OAuth consent screen is configured, follow the below steps to create a client secret credentials and download it to your local system.
+  
+  1. Click the Credentials tab from the side menu. Thereby Credentials screen will be diplayed.
+  
+  2. Click **+ CREATE CREDENTIALS** button as shown in the image below.
 
+  ![click_create_credential](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/18create_credentials.JPG)
+  
+  3. On clicking the create credentials button, the following options will be displayed.
+
+          - API Key
+          - OAuth Client ID
+          - Service Account
+          - Help me choose
+  Among theose options, we have to select "OAuth Client ID" because **Google Sheet API** we enabled in this [Step](https://github.com/CHANDRASEKAR98/google-sheet-api-project/edit/main/README.md#enable-a-google-api-service) needs client authorization in order to acceess the spreadsheet data.
+  Refer the below image.
+  
+  ![client_id_options](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/19oauth_client_id.jpg)
+  
+  4. Once "OAuth Client ID" option is selected, **Create OAuth Client ID** screen opens.
+  
+  5. Choose Application Type based on the your need. For this project I have selected Application Type as "Desktop app".
+  
+  6. Name your OAuth Client which is used to identify the client in the console only.
+
+  ![creating_credentials](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/20creating_oauth_client_id.JPG)
+  
+  7. on clicking **CREATE** button, OAuth Client will be created and a pop up will be displayed like the below image. Download the OAuth Client Credentials by clicking the **DOWNLOAD JSON** button.
+  
+  ![download_json](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/21download_client_secret_JSON.JPG)
+  
+  8. Once the JSON file is downloaded to your system, optionally rename it to "client_secret.json" if you want to.
+  
+  ![rename_credentials](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/22rename_json_optionally.JPG)
+  
