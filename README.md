@@ -7,7 +7,6 @@ Connecting users with the Google sheet to get access to the data. This API integ
 - Java IDE (Ex: Eclipse, VsCode)
 - A Google Account
 ### Java dependencies / JARs requried
-- [Javax Mail](https://jar-download.com/artifacts/com.sun.mail/javax.mail)
 - [Google API Client](https://jar-download.com/artifact-search/google-api-client)
 - [Google API Service](https://jar-download.com/artifacts/com.google.apis/google-api-services-drive)
 - [Google API Sheets](https://jar-download.com/artifact-search/google-api-services-sheets)
@@ -19,6 +18,10 @@ Connecting users with the Google sheet to get access to the data. This API integ
 3. Downloading Client Secret JSON file
 4. Creating a Google Sheet
 5. Accessing Google Sheet data using Java
+
+## Demo
+The below image shows the output containing the exact data from the spreadsheet.
+![]()
 
 ## Installation
 ### JDK 8 Installation
@@ -47,7 +50,7 @@ Enter the Details as shown in the below image.
 
 ![Create_Google_Account](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/1create_google_account.JPG)
 
-CLick **Next** and enter the other personal details on the form and Agree the Terms and Conditions.
+Click **Next** and enter the other personal details on the form and Agree the Terms and Conditions.
 
 Finaly create the Google Account.
 
@@ -178,3 +181,115 @@ Open [Google Console](https://console.cloud.google.com/) with your account creat
 
   ![sheet_url](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/23create_sheet_copy_url_part.jpg)
   
+## Creating Java Project
+1. Create a Java Project and configure it with JDK 1.8 version.
+
+2. Create a new package name and a new class file.
+
+3. Import the following JARs into your project that you have downloaded on this [Step](https://github.com/CHANDRASEKAR98/google-sheet-api-project/edit/main/README.md#java-dependencies--jars-requried). If not, please download them all.
+
+    - Google API Client
+    - Google API Service
+    - Google API Sheet
+    - Google API Client Java6
+
+4. Create a new Source folder to your project called "resources" where you have to store the downloaded OAuth Client Credential JSON file.
+
+5. Copy the donwloaded JSON file and paste it in the "resources" source folder of your project.
+
+## Code Flow
+1. The following constants will be used in the API Client authorization.
+    
+```bash
+    private static final String APPLICATION_NAME = "Google Sheets API";
+    private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
+    private static final String TOKENS_DIRECTORY_PATH = "tokens";
+    private static final List<String> SCOPES = Collections.singletonList(
+    		SheetsScopes.SPREADSHEETS_READONLY);
+    private static final String CREDENTIALS_FILE_PATH = "/client_secret.json";
+```
+2. To authorize the Client, let's create a method `getCredentials` in which the authorization will be done.
+
+```bash
+    private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
+    // authorization code here
+    
+    }
+```
+3. In the `getCredentials` method, stream the client secret resource file data as input. For this, enter the below line inside `getCredentials` method.
+
+```bash
+    // Loading the client secrets.
+    InputStream in = GoogleSheetAPI.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+    if (in == null) {
+      throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
+    }
+```
+4. Now load the input got from step 3 to the GoogleClientSecret class.
+
+```bash
+    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, 
+        		new InputStreamReader(in));
+```
+5. Let's do the authorization now by building an authorization code flow like below lines.
+
+```bash
+    // Build flow and trigger user authorization request.
+    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
+          HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
+          .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
+          .setAccessType("offline")
+          .build();
+    LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
+    return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
+```
+6. The method `getCredentials` created above will be called from the main method where the authorization call will be made using `HTTP_TRANSPORT`.
+
+```bash
+    // Building new authorized API client service.
+	  final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+    Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+	                .setApplicationName(APPLICATION_NAME)
+	                .build();
+```
+7. Now the spreadsheet values will be fetched using the `service` object.
+
+```bash
+    // getting response values from the spreadsheet
+	  ValueRange response = service.spreadsheets().values()
+	            .get(spreadsheetId, range)
+	            .execute();
+	  List<List<Object>> values = response.getValues();
+```
+8. The List `values` will store the entire row data from the spreadsheet. On looping the list, we get the individual row data.
+
+```bash
+    for (List<Object> row : values) {
+	       System.out.println(row.get(0) + " " + row.get(1) + " " + row.get(2) + " " + row.get(3));
+	  }
+```
+9. Now FInally execute the Java Program by clicking **Run as** or use CMD to execute your program. The following will be your output.
+
+![]()
+
+11. Additional Logic
+When you try to execute the program when the Network is not stable / if there is no network connection, you will get `UnknownHostException`. Hence handle it using try-catch block to let the users know what exactly the problem is.
+
+```bash
+    try {
+    
+    } catch (UnknownHostException exception) {
+      System.out.println("Couldn't connect to the Network. Check your network and try again. " + exception);
+    }
+```
+
+## Acknowledgements
+- [Google Developer Console](https://console.cloud.google.com/)
+- [Java Quickstart Sheet API](https://developers.google.com/sheets/api/quickstart/java)
+- [JAR Downloads](https://jar-download.com/)
+
+## Authors
+- [@Chandrasekar Balakumar](https://github.com/CHANDRASEKAR98)
+
+## Feedback
+If you have any feedback, please reach out to me [@Chandrasekar Balakumar](https://www.linkedin.com/in/chandrasekarbalakumar98/) on LinkedIn.
