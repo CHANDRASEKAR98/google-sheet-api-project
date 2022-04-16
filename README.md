@@ -21,7 +21,8 @@ Connecting users with the Google sheet to get access to the data. This API integ
 
 ## Demo
 The below image shows the output containing the exact data from the spreadsheet.
-![]()
+
+![demo_output](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/26demo_output.JPG)
 
 ## Installation
 ### JDK 8 Installation
@@ -195,6 +196,8 @@ Open [Google Console](https://console.cloud.google.com/) with your account creat
 
 4. Create a new Source folder to your project called "resources" where you have to store the downloaded OAuth Client Credential JSON file.
 
+![source_folder](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/24source_folder_java.JPG)
+
 5. Copy the donwloaded JSON file and paste it in the "resources" source folder of your project.
 
 ## Code Flow
@@ -268,11 +271,19 @@ Open [Google Console](https://console.cloud.google.com/) with your account creat
 	       System.out.println(row.get(0) + " " + row.get(1) + " " + row.get(2) + " " + row.get(3));
 	  }
 ```
-9. Now FInally execute the Java Program by clicking **Run as** or use CMD to execute your program. The following will be your output.
+9. Now FInally execute the Java Program by clicking **Run as** or use CMD to execute your program.
 
-![]()
+10. On running the Java program initially for the newly created OAuth Client ID, the user authorization page will be opened on the browser. Once you verify the authoization as trusted, then the following page will be displayed.
 
-11. Additional Logic
+![user_authorization](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/25initial_oauth_authorization_for_new_google_account.JPG)
+
+11. Once the authorization is trusted,  the following will be your output.
+
+![final_output](https://github.com/CHANDRASEKAR98/google-sheet-api-project/blob/main/images/26demo_output.JPG)
+
+**Note:** The User authoization on browser will be done initally once.
+
+12. Additional Logic
 When you try to execute the program when the Network is not stable / if there is no network connection, you will get `UnknownHostException`. Hence handle it using try-catch block to let the users know what exactly the problem is.
 
 ```bash
